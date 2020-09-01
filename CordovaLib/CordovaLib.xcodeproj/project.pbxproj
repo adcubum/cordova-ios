@@ -24,6 +24,8 @@
 		4E23F90323E17FFA006CD852 /* CDVWebViewUIDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E23F8F623E16E96006CD852 /* CDVWebViewUIDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E714D3623F535B500A321AF /* CDVLaunchScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E714D3223F535B500A321AF /* CDVLaunchScreen.h */; };
 		4E714D3823F535B500A321AF /* CDVLaunchScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E714D3423F535B500A321AF /* CDVLaunchScreen.m */; };
+		6B8EC4B824FE4948003423A8 /* UIColor+HexString.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B8EC4B624FE4948003423A8 /* UIColor+HexString.h */; };
+		6B8EC4B924FE4948003423A8 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8EC4B724FE4948003423A8 /* UIColor+HexString.m */; };
 		7E7F69B91ABA3692007546F4 /* CDVHandleOpenURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ED95CF81AB9028C008C4574 /* CDVHandleOpenURL.h */; };
 		7ED95D021AB9028C008C4574 /* CDVDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ED95CF21AB9028C008C4574 /* CDVDebug.h */; };
 		7ED95D031AB9028C008C4574 /* CDVJSON_private.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ED95CF31AB9028C008C4574 /* CDVJSON_private.h */; };
@@ -127,6 +129,8 @@
 		4E714D3223F535B500A321AF /* CDVLaunchScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVLaunchScreen.h; sourceTree = "<group>"; };
 		4E714D3423F535B500A321AF /* CDVLaunchScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVLaunchScreen.m; sourceTree = "<group>"; };
 		68A32D7114102E1C006B237C /* libCordova.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCordova.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B8EC4B624FE4948003423A8 /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
+		6B8EC4B724FE4948003423A8 /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
 		7ED95CF21AB9028C008C4574 /* CDVDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVDebug.h; sourceTree = "<group>"; };
 		7ED95CF31AB9028C008C4574 /* CDVJSON_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVJSON_private.h; sourceTree = "<group>"; };
 		7ED95CF41AB9028C008C4574 /* CDVJSON_private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVJSON_private.m; sourceTree = "<group>"; };
@@ -231,6 +235,8 @@
 		4E23F8F423E16D30006CD852 /* CDVWebViewEngine */ = {
 			isa = PBXGroup;
 			children = (
+				6B8EC4B624FE4948003423A8 /* UIColor+HexString.h */,
+				6B8EC4B724FE4948003423A8 /* UIColor+HexString.m */,
 				4E23F8FA23E16E96006CD852 /* CDVWebViewEngine.h */,
 				4E23F8F823E16E96006CD852 /* CDVWebViewEngine.m */,
 				4E23F8F923E16E96006CD852 /* CDVWebViewProcessPoolFactory.h */,
@@ -402,6 +408,7 @@
 				7ED95D411AB9029B008C4574 /* CDVInvokedUrlCommand.h in Headers */,
 				7ED95D431AB9029B008C4574 /* CDVPlugin+Resources.h in Headers */,
 				7ED95D451AB9029B008C4574 /* CDVPlugin.h in Headers */,
+				6B8EC4B824FE4948003423A8 /* UIColor+HexString.h in Headers */,
 				7ED95D471AB9029B008C4574 /* CDVPluginResult.h in Headers */,
 				7ED95D491AB9029B008C4574 /* CDVScreenOrientationDelegate.h in Headers */,
 				4E23F8FC23E16E96006CD852 /* CDVWebViewUIDelegate.h in Headers */,
@@ -567,6 +574,7 @@
 				7ED95D5A1AB9029B008C4574 /* NSMutableArray+QueueAdditions.m in Sources */,
 				7ED95D041AB9028C008C4574 /* CDVJSON_private.m in Sources */,
 				4E23F8FD23E16E96006CD852 /* CDVWebViewUIDelegate.m in Sources */,
+				6B8EC4B924FE4948003423A8 /* UIColor+HexString.m in Sources */,
 				28BFF9151F355A4E00DDF01A /* CDVLogger.m in Sources */,
 				A3B082D51BB15CEA00D8DC35 /* CDVGestureHandler.m in Sources */,
 				3093E2241B16D6A3003F381A /* CDVIntentAndNavigationFilter.m in Sources */,

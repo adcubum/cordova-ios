@@ -25,5 +25,9 @@
 @property (nonatomic, strong, readonly) id <WKUIDelegate> uiDelegate;
 
 - (void)allowsBackForwardNavigationGestures:(CDVInvokedUrlCommand*)command;
+- (void)showCrashInfoScreen:(CDVInvokedUrlCommand*)command;
+- (void)initializeCrashInfoScreen:(CDVInvokedUrlCommand*)command;
+- (void)isCrashInfoScreenHidden:(CDVInvokedUrlCommand*)command;
+
 
 @end
