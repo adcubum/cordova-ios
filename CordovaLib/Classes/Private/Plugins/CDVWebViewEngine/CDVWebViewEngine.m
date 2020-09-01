@@ -20,6 +20,7 @@
 #import "CDVWebViewEngine.h"
 #import "CDVWebViewUIDelegate.h"
 #import "CDVWebViewProcessPoolFactory.h"
+#import "UIColor+HexString.h"
 #import <Cordova/NSDictionary+CordovaPreferences.h>
 #import "CDVURLSchemeHandler.h"
 
@@ -46,6 +47,15 @@
 @property (nonatomic, readwrite) NSString *CDV_ASSETS_URL;
 @property (nonatomic, readwrite) Boolean cdvIsFileScheme;
 
+@property (nonatomic, strong, readwrite) UIView* crashInfoView;
+@property (nonatomic, strong, readwrite) NSString* crashInfoTitle;
+@property (nonatomic, strong, readwrite) UIColor* crashInfoTitleColor;
+@property (nonatomic, strong, readwrite) NSString* crashInfoText;
+@property (nonatomic, strong, readwrite) UIColor* crashInfoTextColor;
+@property (nonatomic, strong, readwrite) UIColor* crashInfoBackGroundColor;
+@property (nonatomic, strong, readwrite) NSURL * recoveryURL;
+- (void)showCrashScreen:(BOOL)show;
+
 @end
 
 // see forwardingTargetForSelector: selector comment for the reason for this pragma
@@ -54,6 +64,13 @@
 @implementation CDVWebViewEngine
 
 @synthesize engineWebView = _engineWebView;
+@synthesize crashInfoView = _crashInfoView;
+@synthesize crashInfoTitle = _crashInfoTitle;
+@synthesize crashInfoTitleColor = _crashInfoTitleColor;
+@synthesize crashInfoText = _crashInfoText;
+@synthesize crashInfoTextColor = _crashInfoTextColor;
+@synthesize crashInfoBackGroundColor = _crashInfoBackGroundColor;
+
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -251,7 +268,7 @@ static void * KVOContext = &KVOContext;
 
 - (void)addURLObserver {
     if(!IsAtLeastiOSVersion(@"9.0")){
-        [self.webView addObserver:self forKeyPath:@"URL" options:0 context:KVOContext];
+        [self.webView addObserver:self forKeyPath:@"URL" options:NSKeyValueObservingOptionNew context:NULL];
     }
 }
 
@@ -516,7 +533,9 @@ static void * KVOContext = &KVOContext;
 
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView
 {
-    [webView reload];
+    [self showCrashScreen: YES];
+
+    [(WKWebView*)self.engineWebView loadRequest:[NSURLRequest requestWithURL:self.recoveryURL]];
 }
 
 - (BOOL)defaultResourcePolicyForURL:(NSURL*)url
@@ -533,6 +552,11 @@ static void * KVOContext = &KVOContext;
 {
     NSURL* url = [navigationAction.request URL];
     CDVViewController* vc = (CDVViewController*)self.viewController;
+
+     if(!self.recoveryURL) {
+         self.recoveryURL = url;
+     }
+
 
     /*
      * Give plugins the chance to handle the url
@@ -582,6 +606,90 @@ static void * KVOContext = &KVOContext;
 
     WKWebView* wkWebView = (WKWebView*)_engineWebView;
     wkWebView.allowsBackForwardNavigationGestures = [value boolValue];
+}
+
+- (void)initializeCrashInfoScreen:(CDVInvokedUrlCommand*)command;
+{
+    id title = [command argumentAtIndex:0];
+    if(title != nil){
+        _crashInfoTitle = title;
+    }
+    id text = [command argumentAtIndex:1];
+    if(text != nil){
+        _crashInfoText = text;
+    }
+    id titleColor = [command argumentAtIndex:2];
+    if(titleColor != nil && [titleColor isKindOfClass:[NSString class]]){
+        _crashInfoTitleColor = [UIColor colorWithHexString:titleColor];
+    }
+    id textColor = [command argumentAtIndex:3];
+    if(textColor != nil && [textColor isKindOfClass:[NSString class]]){
+        _crashInfoTextColor = [UIColor colorWithHexString:textColor];
+    }
+    id bgColor = [command argumentAtIndex:4];
+    if(bgColor != nil && [bgColor isKindOfClass:[NSString class]]){
+        _crashInfoBackGroundColor = [UIColor colorWithHexString:bgColor];
+    }
+}
+
+ - (void)showCrashInfoScreen:(CDVInvokedUrlCommand*)command;
+ {
+     id value = [command argumentAtIndex:0];
+     if (!([value isKindOfClass:[NSNumber class]])) {
+         value = [NSNumber numberWithBool:NO];
+     }
+
+    [self showCrashScreen: [value boolValue]];
+ }
+
+  - (void)showCrashScreen:(BOOL)show;
+ {
+     if (show) {
+         // if set remove old crash info screen
+         if (self.crashInfoView != nil){
+             [self.crashInfoView removeFromSuperview];
+             self.crashInfoView = nil;
+        }
+
+         // Get The CrashScreen from the xib file
+         NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"CDVWKCrashScreen" owner:nil options:nil];
+         self.crashInfoView = [nibContents lastObject];
+         self.crashInfoView.frame = [UIScreen mainScreen].bounds;
+
+         // Set background color
+         UIView *crashView = (UIView *)[self.crashInfoView viewWithTag:1];
+         crashView.backgroundColor = _crashInfoBackGroundColor;
+
+         // Find the title and text label and set custom text
+         UILabel *titleLabel = (UILabel *)[self.crashInfoView viewWithTag:2];
+         titleLabel.text = _crashInfoTitle;
+         titleLabel.textColor= _crashInfoTitleColor;
+         UILabel *textLabel = (UILabel *)[self.crashInfoView viewWithTag:3];
+         textLabel.text = _crashInfoText;
+         textLabel.textColor= _crashInfoTextColor;
+
+         // add to WKWebview
+         [self.webView.scrollView addSubview:self.crashInfoView];
+
+     }else{
+         // remove crashinfo screen
+         [self.crashInfoView removeFromSuperview];
+         self.crashInfoView = nil;
+     }
+ }
+
+
+- (void)isCrashInfoScreenHidden:(CDVInvokedUrlCommand*)command;
+{
+    CDVPluginResult* pluginResult = nil;
+
+    if (self.crashInfoView != nil){
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:NO];
+    } else {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:YES];
+    }
+
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 @end

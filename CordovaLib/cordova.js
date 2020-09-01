@@ -1788,6 +1788,15 @@ var WkWebKit = {
     allowsBackForwardNavigationGestures: function (allow) {
         exec(null, null, 'CDVWebViewEngine', 'allowsBackForwardNavigationGestures', [allow]);
     },
+    showCrashInfoScreen: function (show) {
+        exec(null, null, 'CDVWebViewEngine', 'showCrashInfoScreen', [show]);
+    },
+    initializeCrashInfoScreen: function (title, text, titleColor, textColor, backgoundColor) {
+        exec(null, null, 'CDVWebViewEngine', 'initializeCrashInfoScreen', [title, text, titleColor, textColor, backgoundColor]);
+    },
+    isCrashInfoScreenHidden: function (callback) {
+        exec(callback, null, 'CDVWebViewEngine', 'isCrashInfoScreenHidden', []);
+    },
     convertFilePath: function (path) {
         if (!path || !window.CDV_ASSETS_URL) {
             return path;

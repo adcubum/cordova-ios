@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ALScannerViewController"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="515"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qNJ-6Q-dDT">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="515"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crash Screen Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qO9-O7-24G">
+                            <rect key="frame" x="37.5" y="204" width="300" height="33.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crash Screen Text" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbB-9z-anh">
+                            <rect key="frame" x="37.5" y="277.5" width="300" height="21.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <activityIndicatorView opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dJY-ap-iNH">
+                            <rect key="frame" x="177.5" y="311" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" notEnabled="YES"/>
+                    </accessibility>
+                    <constraints>
+                        <constraint firstItem="dJY-ap-iNH" firstAttribute="centerX" secondItem="fbB-9z-anh" secondAttribute="centerX" id="1ai-TT-WPI"/>
+                        <constraint firstItem="fbB-9z-anh" firstAttribute="width" secondItem="qO9-O7-24G" secondAttribute="width" id="5mS-lK-BEz"/>
+                        <constraint firstItem="dJY-ap-iNH" firstAttribute="top" secondItem="fbB-9z-anh" secondAttribute="bottom" constant="12" id="7tS-HC-6iM"/>
+                        <constraint firstAttribute="height" constant="50" id="8mn-dd-PYV"/>
+                        <constraint firstItem="qO9-O7-24G" firstAttribute="centerX" secondItem="qNJ-6Q-dDT" secondAttribute="centerX" id="BQm-bo-uQk"/>
+                        <constraint firstItem="fbB-9z-anh" firstAttribute="centerX" secondItem="qO9-O7-24G" secondAttribute="centerX" id="FFg-AQ-Wpj"/>
+                        <constraint firstItem="qO9-O7-24G" firstAttribute="width" secondItem="qNJ-6Q-dDT" secondAttribute="width" multiplier="0.8" id="Nb2-hJ-0tv"/>
+                        <constraint firstItem="fbB-9z-anh" firstAttribute="top" secondItem="qO9-O7-24G" secondAttribute="bottom" constant="40" id="bdL-ja-zpm"/>
+                        <constraint firstItem="qO9-O7-24G" firstAttribute="bottom" secondItem="qNJ-6Q-dDT" secondAttribute="centerY" constant="-20" id="j3K-R5-UNE"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="8mn-dd-PYV"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <accessibility key="accessibilityConfiguration">
+                <accessibilityTraits key="traits" notEnabled="YES"/>
+            </accessibility>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="qNJ-6Q-dDT" secondAttribute="bottom" id="9Os-Qp-HH3"/>
+                <constraint firstItem="qNJ-6Q-dDT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OgU-b5-z7s"/>
+                <constraint firstItem="qNJ-6Q-dDT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QAL-Xc-MbM"/>
+                <constraint firstAttribute="trailing" secondItem="qNJ-6Q-dDT" secondAttribute="trailing" id="U3d-se-KPU"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="322.39999999999998" y="186.65667166416793"/>
+        </view>
+    </objects>
+</document>
